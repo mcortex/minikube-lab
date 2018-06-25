@@ -25,11 +25,11 @@ spec:
       - image: invoices_svc:v2
         imagePullPolicy: IfNotPresent
         name: invoices-svc
-    env:
-      - name: EXPECTED_DATE_URI
-        value: http://expected-date-svc.default.svc.cluster.local
         ports:
         - containerPort: 8080
+        env:
+        - name: EXPECTED_DATE_URI
+          value: http://expected-date-svc.default.svc.cluster.local
       dnsPolicy: ClusterFirst
       restartPolicy: Always
 ---
