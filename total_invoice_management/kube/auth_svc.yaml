@@ -27,7 +27,7 @@ spec:
         name: auth-svc
         env:
         - name: TOKEN
-          value: letmeinpleasekthxbye
+          value: dejamever
         ports:
         - containerPort: 8080
           name: http-api
