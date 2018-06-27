@@ -26,7 +26,7 @@ kubectl get deploy -o wide
  
  `minikube service ambassador --url #NOS DEVUELVE EL SOCKET PARA ACCEDER A invoice_svc`
 
- `curl http://<socket>/invoices/<invoice_id> -H 'authorization: <secret>' # ver secret en kube/auth_svc.yml``
+ `curl http://<socket>/invoices/<invoice_id> -H 'authorization: <secret>' # ver secret en kube/auth_svc.yml`
 
 --- 
 
