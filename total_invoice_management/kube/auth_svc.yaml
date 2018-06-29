@@ -3,14 +3,14 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    run: auth-svc
+    app: auth-svc
   name: auth-svc
   namespace: default
 spec:
   replicas: 3
   selector:
     matchLabels:
-      run: auth-svc
+      app: auth-svc
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -19,7 +19,7 @@ spec:
   template:
     metadata:
       labels:
-        run: auth-svc
+        app: auth-svc
     spec:
       containers:
       - image: auth_svc:v1
@@ -52,7 +52,7 @@ metadata:
 spec:
   type: ClusterIP
   selector:
-    run: auth-svc
+    app: auth-svc
   ports:
   - port: 3000
     name: auth-svc

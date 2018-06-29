@@ -3,14 +3,14 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    run: invoices-svc
+    app: invoices-svc
   name: invoices-svc
   namespace: default
 spec:
   replicas: 3
   selector:
     matchLabels:
-      run: invoices-svc
+      app: invoices-svc
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -19,7 +19,7 @@ spec:
   template:
     metadata:
       labels:
-        run: invoices-svc
+        app: invoices-svc
     spec:
       containers:
       - image: invoices_svc:v2
@@ -30,6 +30,13 @@ spec:
         env:
         - name: EXPECTED_DATE_URI
           value: http://expected-date-svc.default.svc.cluster.local
+        - name: INVOICE_DB_HOST
+          value: wordpress-mysql
+        - name: INVOICE_DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-pass
+              key: password
       dnsPolicy: ClusterFirst
       restartPolicy: Always
 ---
@@ -37,7 +44,7 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    run: invoices-svc
+    app: invoices-svc
   name: invoices-svc
   namespace: default
   annotations:
@@ -55,6 +62,6 @@ spec:
     protocol: TCP
     targetPort: 8080
   selector:
-    run: invoices-svc
+    app: invoices-svc
   sessionAffinity: None
   type: ClusterIP
