@@ -10,6 +10,14 @@ Como ejecutar:
 
  `docker build -t expected_date_svc:v1 expected_date_svc`
 
+* Inicializamos minikube
+
+ `minikube start`
+
+* Creamos el secret para la BBDD (pass en db/mysql_pwd.txt):
+
+ `kubectl create secret generic mysql-pass --from-literal=password=<mysql_pwd>`
+
 * Activamos deployments y services:
 
  `kubectl apply -f kube`
