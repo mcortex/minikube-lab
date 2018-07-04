@@ -4,11 +4,9 @@ Como ejecutar:
 
 * Build de las imagenes:
 
- `docker build -t invoices_svc:v2 invoices_svc`
+ `docker build -t invoices_svc:prueba_db5 invoices_svc`
 
  `docker build -t auth_svc:v1 auth_svc`
-
- `docker build -t expected_date_svc:v1 expected_date_svc`
 
 * Ejecutar para compartir el repositorio de docker:
 
@@ -18,9 +16,9 @@ Como ejecutar:
 
  `minikube start`
 
-* Creamos el secret para la BBDD (pass en db/mysql_pwd.txt):
+* Creamos el secret para la BBDD:
 
- `kubectl create secret generic mysql-pass --from-literal=password=<mysql_pwd>`
+ `kubectl create secret generic mysql-pass --from-literal=password=<mysql_pwd> #pass en db/mysql_pwd.txt`
 
 * Activamos deployments y services:
 
@@ -67,8 +65,10 @@ Como ejecutar:
 
 * Pendiente:
 
- Visibilidad entre invoices-svc-mysql y invoices-svc
+ Frontend grafico minimo para acceder a invoice-svc desde navegador ademas de por curl.
 
 ---
-Extracted from hackernoon's gettin started with microservices and kubernetes:
-https://hackernoon.com/getting-started-with-microservices-and-kubernetes-76354312b556
+Fuentes:
+* Hackernoon gettin started with microservices and kubernetes: https://hackernoon.com/getting-started-with-microservices-and-kubernetes-76354312b556
+
+* Persistent Volumes MySQL: https://kubernetes.io/docs/tutorials/stateful-application/mysql-wordpress-persistent-volume/
