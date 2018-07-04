@@ -10,6 +10,10 @@ Como ejecutar:
 
  `docker build -t expected_date_svc:v1 expected_date_svc`
 
+* Ejecutar para compartir el repositorio de docker:
+
+ `eval $(minikube docker-env)`
+
 * Inicializamos minikube
 
  `minikube start`
