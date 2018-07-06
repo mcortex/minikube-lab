@@ -2,15 +2,15 @@ Sistema de consulta por numero de factura (invoice_id) utilizando microservicios
 
 Como ejecutar:
 
+* Ejecutar para compartir el repositorio de docker:
+
+ `eval $(minikube docker-env)`
+
 * Build de las imagenes:
 
  `docker build -t invoices_svc:prueba_db5 invoices_svc`
 
- `docker build -t auth_svc:v1 auth_svc`
-
-* Ejecutar para compartir el repositorio de docker:
-
- `eval $(minikube docker-env)`
+ `docker build -t frontend_svc:v1 frontend_svc`
 
 * Inicializamos minikube
 
@@ -57,18 +57,24 @@ Como ejecutar:
 ---
 * Realizar una consulta al frontend:
 
- `minikube service ambassador --url #NOS DEVUELVE EL SOCKET PARA ACCEDER A invoice_svc`
+ `minikube service ambassador --url #NOS DEVUELVE LA URL PARA ACCEDER A invoice_svc`
 
- `curl http://<socket>/invoices/<invoice_id> -H 'authorization: <token>' # ver token en kube/auth_svc.yml`
+ - Desde el navegador ingresar la url para acceder al frontend_svc, ingresar luego un id válido.
+
+ - Utilizando curl podemos consultar directamente a invoices_svc:
+
+ `curl http://<url>/invoices/<invoice_id> -H 'authorization: <token>' # ver token en kube/auth_svc.yml`
 
 ---
 
-* Pendiente:
+* Definicion de la infraestructura:
 
- Frontend grafico minimo para acceder a invoice-svc desde navegador ademas de por curl.
+<imagen>
 
 ---
 Fuentes:
 * Hackernoon gettin started with microservices and kubernetes: https://hackernoon.com/getting-started-with-microservices-and-kubernetes-76354312b556
 
 * Persistent Volumes MySQL: https://kubernetes.io/docs/tutorials/stateful-application/mysql-wordpress-persistent-volume/
+
+* Build a Weather Website in with NodeJS + Express: https://codeburst.io/build-a-weather-website-in-30-minutes-with-node-js-express-openweather-a317f904897b
