@@ -69,7 +69,7 @@ Como ejecutar:
 
 * Definicion de la infraestructura:
 
-<imagen>
+![infraestructura](https://raw.githubusercontent.com/mcortex/minikube-lab/master/total_invoice_management/invoice_mgmt.png)
 
 ---
 Fuentes:
