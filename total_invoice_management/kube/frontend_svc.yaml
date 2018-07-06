@@ -1,0 +1,67 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: frontend-svc
+  name: frontend-svc
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: frontend-svc
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: frontend-svc
+    spec:
+      containers:
+      - image: frontend_svc:v1
+        imagePullPolicy: IfNotPresent
+        name: frontend-svc
+        ports:
+        - containerPort: 8080
+        env:
+        - name: INVOICES_SVC_URI
+          value: http://invoices-svc.default.svc.cluster.local
+        - name: INVOICE_DB_HOST
+          value: frontend-svc-mysql
+        - name: INVOICE_DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-pass
+              key: password
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: frontend-svc
+  name: frontend-svc
+  namespace: default
+  annotations:
+    getambassador.io/config: |
+      ---
+      apiVersion: ambassador/v0
+      kind:  Mapping
+      name:  fws-frontend_mapping
+      prefix: /
+      rewrite: /
+      service: frontend-svc
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: frontend-svc
+  sessionAffinity: None
+  type: ClusterIP

@@ -1,0 +1,26 @@
+{
+  "name": "express-msrv",
+  "version": "1.0.0",
+  "description": "pruebas de comunicacion con otra api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mcortex/minikube-lab.git"
+  },
+  "author": "mcortez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mcortex/minikube-lab/issues"
+  },
+  "homepage": "https://github.com/mcortex/minikube-lab#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "request": "^2.87.0"
+  }
+}

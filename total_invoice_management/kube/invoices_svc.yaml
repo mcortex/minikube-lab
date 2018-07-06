@@ -28,8 +28,8 @@ spec:
         ports:
         - containerPort: 8080
         env:
-        - name: EXPECTED_DATE_URI
-          value: http://expected-date-svc.default.svc.cluster.local
+        #- name: EXPECTED_DATE_URI
+        #  value: http://expected-date-svc.default.svc.cluster.local
         - name: INVOICE_DB_HOST
           value: invoices-svc-mysql
         - name: INVOICE_DB_PASSWORD
